@@ -6,23 +6,26 @@
   <title>Login — Hermes Opencode Web</title>
   <style>
     :root {
-      --bg: #0f1119;
-      --card: #1a1d2e;
-      --border: #2a2e42;
-      --text: #e8eaf0;
-      --text-muted: #9aa1b5;
-      --primary: #6366f1;
-      --primary-hover: #5558e6;
-      --danger: #ef4444;
-      --success: #22c55e;
-      --shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+      --bg: #f5f0ff;
+      --bg-secondary: #e9e2f5;
+      --card: #ffffff;
+      --card-hover: #faf8ff;
+      --border: #e0d8f0;
+      --text: #3d3455;
+      --text-muted: #8a7aaa;
+      --primary: #9b7bb2;
+      --primary-hover: #8a6bb2;
+      --primary-light: #d4c4ea;
+      --danger: #d14545;
+      --shadow: 0 12px 40px rgba(155, 123, 178, 0.15);
+      --logo-ring: #d4c4ea;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: "Segoe UI", "Inter", system-ui, -apple-system, sans-serif;
-      background: var(--bg);
+      background: linear-gradient(135deg, #f5f0ff 0%, #ede6f5 50%, #f0eaff 100%);
       color: var(--text);
       min-height: 100vh;
       display: flex;
@@ -78,13 +81,13 @@
     .field input {
       width: 100%;
       padding: 0.75rem 1rem;
-      background: var(--bg);
+      background: var(--card);
       border: 1px solid var(--border);
       border-radius: 8px;
       color: var(--text);
       font-size: 1rem;
       outline: none;
-      transition: border-color 0.2s;
+      transition: border-color 0.2s, box-shadow 0.2s;
     }
 
     .field input:focus {
@@ -178,10 +181,13 @@
       border-radius: 8px;
       font-size: 1rem;
       cursor: pointer;
-      transition: border-color 0.2s;
+      transition: border-color 0.2s, background 0.2s;
     }
 
-    .btn-google:hover { border-color: var(--primary); }
+    .btn-google:hover {
+      border-color: var(--primary);
+      background: var(--primary-light);
+    }
 
     .footer {
       text-align: center;
@@ -205,8 +211,8 @@
     <div class="logo">
       <!-- Ganti dengan logo/icon aplikasi Anda -->
       <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="6" y="6" width="36" height="36" rx="10" fill="#1a1d2e" stroke="#2a2e42" stroke-width="2"/>
-        <path d="M14 20 L18 24 L26 16" stroke="#6366f1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <rect x="6" y="6" width="36" height="36" rx="10" fill="var(--card)" stroke="var(--border)" stroke-width="2"/>
+        <path d="M14 20 L18 24 L26 16" stroke="var(--primary)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
       <h1>Halo, kembali!</h1>
       <p>Masuk untuk melanjutkan</p>
