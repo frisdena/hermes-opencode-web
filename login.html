@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login — Hermes Opencode Web</title>
+  <style>
+    :root {
+      --bg: #0f1119;
+      --card: #1a1d2e;
+      --border: #2a2e42;
+      --text: #e8eaf0;
+      --text-muted: #9aa1b5;
+      --primary: #6366f1;
+      --primary-hover: #5558e6;
+      --danger: #ef4444;
+      --success: #22c55e;
+      --shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Segoe UI", "Inter", system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 400px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: var(--shadow);
+    }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .logo svg {
+      width: 48px;
+      height: 48px;
+      color: var(--primary);
+    }
+
+    .logo h1 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-top: 0.5rem;
+    }
+
+    .logo p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .field {
+      margin-bottom: 1.25rem;
+    }
+
+    .field label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .field input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .field input:focus {
+      border-color: var(--primary);
+    }
+
+    .field .error {
+      font-size: 0.8rem;
+      color: var(--danger);
+      display: none;
+      margin-top: 0.3rem;
+    }
+
+    .field.error input,
+    .field.error .error {
+      border-color: var(--danger);
+    }
+
+    .field.error .error { display: block; }
+
+    .options {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .options .remember {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+
+    .options .remember input {
+      accent-color: var(--primary);
+      width: 16px;
+      height: 16px;
+    }
+
+    .forgot {
+      color: var(--primary);
+      text-decoration: none;
+      font-size: 0.85rem;
+    }
+
+    .forgot:hover { text-decoration: underline; }
+
+    .btn {
+      width: 100%;
+      padding: 0.85rem;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn:hover { background: var(--primary-hover); }
+
+    .btn:active { transform: scale(0.98); }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 1.25rem 0;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .divider::before,
+    .divider::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .btn-google {
+      width: 100%;
+      padding: 0.85rem;
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+
+    .btn-google:hover { border-color: var(--primary); }
+
+    .footer {
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 1.25rem;
+    }
+
+    .footer a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    @media (max-width: 480px) {
+      .card { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="logo">
+      <!-- Ganti dengan logo/icon aplikasi Anda -->
+      <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="6" y="6" width="36" height="36" rx="10" fill="#1a1d2e" stroke="#2a2e42" stroke-width="2"/>
+        <path d="M14 20 L18 24 L26 16" stroke="#6366f1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <h1>Halo, kembali!</h1>
+      <p>Masuk untuk melanjutkan</p>
+    </div>
+
+    <form id="loginForm" novalidate>
+      <div class="field" id="emailField">
+        <label for="email">Email / Username</label>
+        <input type="text" id="email" name="email" placeholder="masukkan email" autocomplete="username" />
+        <div class="error"></div>
+      </div>
+
+      <div class="field" id="passwordField">
+        <label for="password">Kata Sandi</label>
+        <input type="password" id="password" name="password" placeholder="••••••••" autocomplete="current-password" />
+        <div class="error"></div>
+      </div>
+
+      <div class="options">
+        <label class="remember">
+          <input type="checkbox" id="remember" name="remember" /> Ingat saya
+        </label>
+        <a href="#" class="forgot">Lupa kata sandi?</a>
+      </div>
+
+      <button type="submit" class="btn">Masuk</button>
+
+      <div class="divider">atau</div>
+
+      <button type="button" class="btn-google">Lanjutkan dengan Google</button>
+
+      <p class="footer">
+        Belum punya akun? <a href="/register">Daftar</a>
+      </p>
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById("loginForm");
+    const emailField = document.getElementById("emailField");
+    const passwordField = document.getElementById("passwordField");
+    const email = document.getElementById("email");
+    const password = document.getElementById("password");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      // Hapus kelas error dari semua field
+      emailField.classList.remove("error");
+      passwordField.classList.remove("error");
+      emailField.querySelector(".error").textContent = "";
+      passwordField.querySelector(".error").textContent = "";
+
+      let valid = true;
+
+      // Validasi email
+      if (!email.value.trim()) {
+        emailField.classList.add("error");
+        emailField.querySelector(".error").textContent = "Email wajib diisi";
+        valid = false;
+      } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
+        emailField.classList.add("error");
+        emailField.querySelector(".error").textContent = "Format email tidak valid";
+        valid = false;
+      }
+
+      // Validasi password
+      if (!password.value) {
+        passwordField.classList.add("error");
+        passwordField.querySelector(".error").textContent = "Kata sandi wajib diisi";
+        valid = false;
+      }
+
+      if (!valid) return;
+
+      try {
+        const res = await fetch("/api/auth/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email: email.value.trim(),
+            password: password.value,
+            remember: document.getElementById("remember").checked,
+          }),
+        });
+
+        const data = await res.json();
+
+        if (res.ok) {
+          // Simpan token / sesi sesuai kebutuhan
+          // Contoh: localStorage.setItem("token", data.token);
+          window.location.href = "/dashboard"; // Redirect setelah sukses
+        } else {
+          // Tampilkan error dari server
+          const msg = data.message || "Login gagal";
+          passwordField.classList.add("error");
+          passwordField.querySelector(".error").textContent = msg;
+        }
+      } catch (err) {
+        passwordField.querySelector(".error").textContent =
+          "Terjadi kesalahan koneksi. Coba lagi.";
+      }
+    });
+  </script>
+</body>
+</html>
